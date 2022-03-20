@@ -83,4 +83,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         sys.exit("No file provided")
 
-    sys.exit(main(sys.argv[1]))
+    try:
+        main(sys.argv[1])
+    except KeyboardInterrupt as e:
+        sys.exit(e)
