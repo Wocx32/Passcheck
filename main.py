@@ -1,9 +1,14 @@
 from time import sleep
 from config import url_column, username_column, password_column
+
+from rich.progress import Progress
+from rich.live import Live
+from rich.table import Table
+from rich import box
+
 import requests
 import hashlib
 import csv
-from rich.progress import track
 import sys
 
 
@@ -73,11 +78,23 @@ def main(file):
                 sys.exit("Csv file doesn't contain the required columns")
 
 
-        for row in track(reader, description="Processing...", total=entries):
-            result = pwned_api_check(row[password_index])
+        progress = Progress(expand=True)
+        task = progress.add_task("Processing...", total=entries)
 
-            print(f"Password for user: {row[username_index]}, on site: {row[url_index]}, appeared {result} times")
-            sleep(1.5)
+        table = Table(expand=True, safe_box=False, style="blue", box=box.ROUNDED, collapse_padding=True)
+        table.add_column("User", justify='center', overflow= 'fold')
+        table.add_column("URL", justify='center', overflow='fold')
+        table.add_column("Times found", justify='center', overflow='fold')
+
+        table.add_row('', progress, '', end_section=True)
+
+        with Live(table, refresh_per_second=4):
+            for row in reader:
+                result = pwned_api_check(row[password_index])
+
+                table.add_row(f"[green]{row[username_index]}", f"[blue]{row[url_index]}", f"[red]{result}")
+                progress.update(task, advance=1)
+                sleep(1.5)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
