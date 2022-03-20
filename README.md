@@ -27,7 +27,7 @@ or
     python main.py example/example.csv
 
 
-![Example](/.resources/example.png)
+![Example](/.resources/examp.png)
 
 _Note: It has been tested with csv files exported by Chrome, Firefox and Bitwarden_
 
