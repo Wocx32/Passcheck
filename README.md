@@ -29,7 +29,7 @@ or
 
 ![Example](/.resources/example.png)
 
-_Note: It has been tested with csv files exported by Chrome and Firefox_
+_Note: It has been tested with csv files exported by Chrome, Firefox and Bitwarden_
 
 # Requirements
 - [Python3](https://www.python.org/)

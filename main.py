@@ -40,10 +40,25 @@ def main(file):
         password_index = None
 
         for row in reader:
-            url_index = row.index('url')
-            username_index = row.index('username')
-            password_index = row.index('password')
-            break
+            # for Chrome and Firefox
+            try:
+                url_index = row.index('url')
+                username_index = row.index('username')
+                password_index = row.index('password')
+                break
+            except ValueError:
+                pass
+                
+
+            # for bitwarden
+            try:
+                url_index = row.index('login_uri')
+                username_index = row.index('login_username')
+                password_index = row.index('login_password')
+                break
+
+            except ValueError:
+                sys.exit("Csv file doesn't contain the appropriate columns")
 
         for row in track(reader, description="Processing...", total=entries):
             result = pwned_api_check(row[password_index])
