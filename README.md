@@ -31,6 +31,10 @@ or
 
 _Note: It has been tested with csv files exported by Chrome, Firefox and Bitwarden_
 
+# Configuration
+
+The specific columns containing the url, username and password can be set in `config.py`
+
 # Requirements
 - [Python3](https://www.python.org/)
 - [rich](https://github.com/Textualize/rich)

@@ -1,4 +1,5 @@
 from time import sleep
+from config import url_column, username_column, password_column
 import requests
 import hashlib
 import csv
@@ -40,6 +41,17 @@ def main(file):
         password_index = None
 
         for row in reader:
+
+            try:
+                if all((url_column, username_column, password_column)):
+                    url_index = row.index(url_column)
+                    username_index = row.index(username_column)
+                    password_index = row.index(password_column)
+                    break
+
+            except ValueError:
+                sys.exit("Csv file doesn't contain the required columns") 
+
             # for Chrome and Firefox
             try:
                 url_index = row.index('url')
@@ -58,7 +70,8 @@ def main(file):
                 break
 
             except ValueError:
-                sys.exit("Csv file doesn't contain the appropriate columns")
+                sys.exit("Csv file doesn't contain the required columns")
+
 
         for row in track(reader, description="Processing...", total=entries):
             result = pwned_api_check(row[password_index])
