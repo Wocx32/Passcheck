@@ -20,11 +20,11 @@ or
 
 Provide a csv file containing url, username and password columns as commandline argument
 
-    python3 main.py example.csv
+    python3 main.py example/example.csv
 
 or
 
-    python main.py example.csv
+    python main.py example/example.csv
 
 
 ![Example](/.resources/example.png)
