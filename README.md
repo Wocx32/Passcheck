@@ -3,6 +3,8 @@ Aesthetically pleasing password checker which utilizes the haveibeenpwned api
 
 _Currently only supports csv files_
 
+![Example](/.resources/examp.png)
+
 # Install
 Clone this repository
 
@@ -27,7 +29,6 @@ or
     python main.py example/example.csv
 
 
-![Example](/.resources/examp.png)
 
 _Note: It has been tested with csv files exported by Chrome, Firefox and Bitwarden_
 
