@@ -1,5 +1,5 @@
 # Passcheck
-A password checker which utilizes the haveibeenpwned api
+Aesthetically pleasing password checker which utilizes the haveibeenpwned api
 
 _Currently only supports csv files_
 
