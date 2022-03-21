@@ -88,13 +88,20 @@ def main(file):
 
         table.add_row('', progress, '', end_section=True)
 
+        accounts_vulnerable = 0
+
         with Live(table, refresh_per_second=4):
             for row in reader:
                 result = pwned_api_check(row[password_index])
 
-                table.add_row(f"[green]{row[username_index]}", f"[blue]{row[url_index]}", f"[red]{result}")
+                if result != 0:
+                    table.add_row(f"[green]{row[username_index]}", f"[blue]{row[url_index]}", f"[red]{result}")
+                    accounts_vulnerable += 1
                 progress.update(task, advance=1)
                 sleep(1.5)
+
+            if accounts_vulnerable == 0:
+                table.add_row("", "[green]All Good!", "")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
