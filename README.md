@@ -5,6 +5,9 @@ _Currently only supports csv files_
 
 ![Example](/.resources/examp.png)
 
+# Note Regarding Security
+All passwords are sha1 hashed. Only first 5 characters of the hash are sent to the api ([haveibeenpwned](https://haveibeenpwned.com/API/v3#SearchingPwnedPasswordsByRange) uses [k-anonymity](https://en.wikipedia.org/wiki/K-anonymity)) over HTTPS. The rest of the hash is checked against the hashes returned by the api ([Padding](https://haveibeenpwned.com/API/v3#PwnedPasswordsPadding) option has been enabled)
+
 # Install
 Clone this repository
 
